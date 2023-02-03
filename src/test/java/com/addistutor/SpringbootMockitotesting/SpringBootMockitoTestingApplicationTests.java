@@ -1,6 +1,8 @@
 package com.addistutor.SpringbootMockitotesting;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.stream.Collectors;
@@ -43,6 +45,12 @@ class SpringBootMockitoTestingApplicationTests {
 		when(repository.findByAddress(address))
 				.thenReturn(Stream.of(new User( "Henno", 4, "USA")).collect(Collectors.toList()));
 		assertEquals(1, service.getUserbyAddress(address).size());
+	}
+	@Test
+	public void deleteUserTest() {
+		User user = new User( "Tir", 25, "AA");
+		service.deleteUser(user);
+		verify(repository, times(1)).delete(user);
 	}
 
 }
