@@ -31,5 +31,11 @@ class SpringBootMockitoTestingApplicationTests {
 				.of(new User( "Henno", 4, "USA"), new User( "Ezana", 3, "UK")).collect(Collectors.toList()));
 		assertEquals(2, service.getUsers().size());
 	}
+	@Test
+	public void addUserTest() {
+		User user = new User( "Merry", 34, "Addis");
+		when(repository.save(user)).thenReturn(user);
+		assertEquals(user, service.addUser(user));
+	}
 
 }
