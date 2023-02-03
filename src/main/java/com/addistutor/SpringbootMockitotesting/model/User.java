@@ -10,14 +10,31 @@ import lombok.ToString;
 
 @Document(collection = "usersTable")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@ToString
 public class User {
+	 
+	
 	@Id
-	private int id;
+	private String id;
 	private String name;
 	private int age;
 	private String address;
+	
+	
+	public User() {
+		super();
+	}
+	public User(String name, int age, String address) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.address = address;
+	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", age=" + age + ", address=" + address + "]";
+	}
 
 }
