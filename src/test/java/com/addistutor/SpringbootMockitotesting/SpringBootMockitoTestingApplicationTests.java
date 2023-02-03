@@ -37,5 +37,12 @@ class SpringBootMockitoTestingApplicationTests {
 		when(repository.save(user)).thenReturn(user);
 		assertEquals(user, service.addUser(user));
 	}
+	@Test
+	public void getUserbyAddressTest() {
+		String address = "AA";
+		when(repository.findByAddress(address))
+				.thenReturn(Stream.of(new User( "Henno", 4, "USA")).collect(Collectors.toList()));
+		assertEquals(1, service.getUserbyAddress(address).size());
+	}
 
 }
